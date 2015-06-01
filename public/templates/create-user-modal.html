@@ -1,0 +1,54 @@
+<div class="modal fade" id="create-user-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form-horizontal" role="form" data-bind="with:selectedUser">
+                <div class="modal-header">
+                    <h3>Create User Dialog</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label>Name</label><input type="text" class="form-control" placeholder="Name" data-bind="textInput:name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label>Title</label><input type="text" class="form-control" placeholder="Title" data-bind="textInput:title">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label>Job</label><br>
+                            <select data-bind="selectmenu: { width: '500px' },
+                                                            options: $parent.getJobNames(),
+                                                            value:jobName">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label>Description</label><input type="text" class="form-control" placeholder="Description" data-bind="textInput:description">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label>Date</label><input type="text" class="form-control" placeholder="Date" data-bind="textInput:date">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-default" data-bind="{click: $parent.createUser}">
+                                <i class="glyphicon glyphicon-plus-sign"></i> Save
+                            </button>
+                            <button type="submit" class="btn btn-default" data-bind="{click: $parent.cancelCreateUserDialog}">
+                                <i class="glyphicon glyphicon-remove-circle"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

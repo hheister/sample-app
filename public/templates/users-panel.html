@@ -1,0 +1,38 @@
+<div id="users-panel">
+	<div class="tableToolbarContainer">
+	<label class="horstLabel">Users:</label><button data-bind="click:loadUsers" title="Refresh From Server">Refresh</button>&nbsp;&nbsp;<button data-bind="click:showUserCreationDialog" title="Create a User...">Create</button>
+	</div>
+		<table width=90% class="hovertable">
+		<thead>
+			<tr >
+				<th>Name</th>
+				<th>Title</th>
+				<th>Job</th>
+				<th>Date</th>
+				<th>Description</th>
+				<th>Citizen</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: users">
+			<tr>
+				<td><a href="#" data-bind="text: name"></a></td>
+				<td data-bind="text: title"></td>
+				<td data-bind="text: jobName"></td>
+				<td ><a href="#" data-bind="text: date, click:$root.showUserDatePicker"></a></td>
+				<td data-bind="text: description"></td>
+				<td><input type="checkbox" data-bind="checked:citizen" title="Toggle to change the citizenship"></td>
+				<td width=90>
+					<div style="text-align: center">
+					<a href data-bind="click:$parent.editUser, text:'Edit'"></a>&nbsp;&nbsp;
+					<button data-bind="{click:$parent.deleteUser}">Delete</button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div id="userPageIndex" style="margin-top: 5px; font-family: Verdana; font-size:10px;">
+		<a href=""  data-bind="click:previousUsersPage, visible:showPreviousButton" style="color:blue">Previous</a>&nbsp;&nbsp;
+		<a href="" data-bind="click:nextUsersPage, visible:showNextButton" style="color:blue">Next</a>&nbsp;&nbsp; <div style="display:inline-block" data-bind="text:usersTablePageInfoText"></div>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+{
+  "name": "Horst Heistermann",
+  "description": "Horst JSON File",
+  "version": "0.0.2",
+  "private": true,
+  "address": {
+    "street": "257 Fringe Tree Ter",
+    "zipcode": "98086",
+    "state", "California"
+  }
+}

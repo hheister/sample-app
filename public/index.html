@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>Sample App</title>
+		<link rel="stylesheet" type="text/css" href="http://localhost:8080/css/horst.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost:8080/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="http://localhost:8080/js/vendors/jquery-ui/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="http://localhost:8080/js/vendors/jqwidgets/styles/jqx.base.css" />
+		<link rel="stylesheet" type="text/css" href="http://localhost:8080/js/vendors/menu/menu.css"  />
+		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css" />
+		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.7/integration/jqueryui/dataTables.jqueryui.css"/>
+
+        <style type="text/css">
+            html, body {
+                height: 100%;
+                width: 100%;
+                margin: 0px;
+                padding: 0px;
+                overflow: hidden;
+            }
+        </style>
+	</head>
+	<body>
+		<div id="horstHeader" class="titleHeader" >
+			<img src="images/banner.jpg" style="display:inline-block; vertical-align:top;"/>
+			<table id="cssTable" style="display:inline-block;" height="60px" border="1">
+				<tr>
+					<td><label>Horst's Sample Application</label></td>
+				</tr>
+			</table>
+			<div  data-bind="template: {name:'main-menu'}" style="float:right; vertical-align:center; margin-right: 100px;"></div>
+		</div>
+
+        <div style="border: none;" id='splitter'>
+            <div style="background-color: #97FFAF">
+            	<div style="height:100%; background-color:blue">
+            		<!-- <div data-bind="template: {name:'navigation-panel'}"></div>-->
+            		<div id="myAccordion">
+						<h2><a href="#">List Box</a></h2>
+						<div>
+							<div id='jqxWidget'>1</div>
+				        	<div id="selectionlog">2</div>
+						</div>
+
+						<h2><a href="#">Selection Tree</a></h2>
+				        <div style="overflow: hidden;">
+			                <div style="border: none;" id='selectionTree'></div>
+			            </div>
+
+						<h2><a href="#">Static Tree</a></h2>
+				        <div id='jqxExpander'>
+				            <div>
+				                Folders
+				            </div>
+				            <div style="overflow: hidden;">
+				                <div style="border: none;" id='jqxTree'>
+				                </div>
+				            </div>
+				        </div>
+
+						<h2><a href="#">Select Menu</a></h2>
+						<div class="demo">
+							<form action="#">
+							  <fieldset>
+							  	<label for="pageSelector">Select Page To Display</label>
+							    <select name="pageSelector" id="pageSelector">
+							      <option value="welcome_page">Welcome</option>
+							      <option value="tab_page">Tab Pane</option>
+							    </select>
+
+							    <label for="speed">Select a speed</label>
+							    <select name="speed" id="speed">
+							      <option>Slower</option>
+							      <option>Slow</option>
+							      <option selected="selected">Medium</option>
+							      <option>Fast</option>
+							      <option>Faster</option>
+							    </select>
+
+							    <label for="files">Select a file</label>
+							    <select name="files" id="files">
+							      <optgroup label="Scripts">
+							        <option value="jquery">jQuery.js</option>
+							        <option value="jqueryui">ui.jQuery.js</option>
+							      </optgroup>
+							      <optgroup label="Other files">
+							        <option value="somefile">Some unknown file</option>
+							        <option value="someotherfile">Some other file with a very long option text</option>
+							      </optgroup>
+							    </select>
+							  </fieldset>
+							</form>
+						</div>
+					</div> <!-- end accordian -->
+            	</div>
+            </div> <!-- end splitter left -->
+            <div> <!-- splitter right -->
+            	<div id="container" class="horstContainer" >
+
+
+					<div class="appHeader"><b>Sample Application Header</b></div>
+
+					<div id="welcomePanel" data-bind="visible:welcomePageVisible">Welcome Page</div>
+					<div id="mainTab" data-bind="visible:mainTabVisible">
+						<ul>
+							<li><a href="#usersTab">Users</a></li>
+							<li><a href="#usersDataTableTab">Users DataTable1</a></li>
+							<li><a href="#jobsTab">Jobs</a></li>
+		                    <li><a href="html/horst.html">AJAX</a></li>
+		                    <li><a href="#flickr">Remote Images</a></li>
+		                    <li><a href="#ajaxTreeTab">AJAX Tree</a></li>
+							<li><a href="#dataTableTab">Data Tables</a></li>
+						</ul>
+						<!-- Remote Images -->
+                		<div id="flickr"></div>
+						<!-- USERS TAB -->
+						<div id="usersTab">
+							<div data-bind="template: {name:'users-panel'}"></div>
+						</div>
+						<!-- Users Data Table -->
+						<div id="usersDataTableTab" >
+							<div data-bind="template: {name:'users-data-table'}"></div>
+						</div>
+						<!-- JOBS TAB -->
+						<div id="jobsTab" >
+							<div data-bind="template: {name:'jobs-panel'}"></div>
+						</div>
+						<!-- AJAX Tree TAB -->
+						<div id="ajaxTreeTab" >
+							<div id="ajaxTree"></div>
+    					</div>
+						<!-- Data Table -->
+						<div id="dataTableTab" >
+							<div data-bind="template: {name:'data-table-1'}"></div>
+						</div>
+					</div> <!-- end Main Tab -->
+
+					<div data-bind="template: {name:'create-user-modal'}"></div>
+					<div data-bind="template: {name:'create-job-modal'}"></div>
+					<div data-bind="template: {name:'edit-user-modal'}"></div>
+					<div data-bind="template: {name:'edit-job-modal'}"></div>
+
+					<div  data-bind="template: {name:'edit-job-dialog'}"></div>
+					<div id="datepicker"></div>
+					<!--
+					<div id="edit-job-dialog" title="Edit Job" style="display: none;">
+						<form>
+							<fieldset>
+								<label for="name">Name</label>
+								<input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all">
+								<label for="vacation">Vacation</label>
+								<input type="text" name="vacation" id="vacation" value="2 weeks" class="text ui-widget-content ui-corner-all">
+								<label for="salary">Salary</label>
+								<input name="salary" id="salary" value="45,000" class="text ui-widget-content ui-corner-all">
+								<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+							</fieldset>
+						</form>
+					</div>
+				-->
+
+				</div>  <!-- end container -->
+            </div> <!-- end splitter right -->
+        </div> <!-- end splitter -->
+     <!-- Just so the menu doesn't put up a warning about no link to the menu website -->
+	  <a href="http://apycom.com/">Apycom jQuery Menus</a>
+	  <script data-main="js/main" src="/js/vendors/require.js"></script>
+	</body>
+</html>

@@ -1,0 +1,15 @@
+<div id="edit-job-dialog" title="Edit Job" style="display: none;">
+    <form class="jobDialog" data-bind="with:selectedJob">
+        <fieldset>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" data-bind="textInput:name" class="text ui-widget-content ui-corner-all">
+            <label for="vacation">Vacation</label>
+            <input type="text" name="vacation" id="vacation" data-bind="textInput:vacation" class="text ui-widget-content ui-corner-all">
+            <label for="salarySpinner">Salary</label>
+           <!-- <input name="salarySpinner" id="salarySpinner" data-bind="value:salary" class="text ui-widget-content ui-corner-all"> -->
+            <input name="salarySpinner" data-bind="spinner: salary, spinnerOptions: { min: 0, max:10000000, step: 10000 } ">
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        </fieldset>
+    </form>
+</div>

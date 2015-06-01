@@ -1,0 +1,100 @@
+#progressBar {
+    position:fixed;
+    top: 30%;
+    left: 10%;
+    width: 80%;
+    height: 40px
+}
+
+#progressBarLabel {
+    width:100%;
+    top:2.5%;
+    position:absolute
+}
+
+.horstContainer {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-botton: 20px;
+    margin-right: 20px;
+    height:100%
+}
+
+.navigationContainer {
+    margin-top: 5px;
+    margin-left: 0px;
+    margin-botton: 5px;
+    margin-right: 0px;
+    height:100%;
+    background-color: #97FFAF;
+}
+
+#cssTable td {text-align:center; vertical-align:middle;}
+
+.titleHeader {
+    background-color: #97FFAF;
+    width:100%;
+    border-style: solid;
+    border-width: 2px;
+
+}
+
+.appHeader {
+	padding-top: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    background-color: #97FFAF;
+}
+
+fieldset {
+  border: 0;
+}
+label {
+  display: block;
+  margin: 30px 0 0 0;
+}
+select {
+  width: 200px;
+}
+.overflow {
+  height: 200px;
+}
+
+.ui-menu { width: 150px; }
+
+form.jobDialog label, form.jobDialog input { display:block; width:350px }
+
+.horstLabel {
+    font-family: verdana,arial,sans-serif;
+    font-size:11px;
+    margin-right:5px;
+}
+table.hovertable {
+    font-family: verdana,arial,sans-serif;
+    font-size:11px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #999999;
+    border-collapse: collapse;
+}
+table.hovertable th {
+    background-color:#c3dde0;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #a9c6c9;
+}
+/*table.hovertable tr {*/
+    /*background-color:#d4e3e5;*/
+/*}*/
+table.hovertable td {
+    border-width: 1px;
+    padding: 4px;
+    border-style: solid;
+    border-color: #a9c6c9;
+}
+
+.tableToolbarContainer {
+    margin-bottom:5px;
+}

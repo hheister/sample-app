@@ -1,0 +1,36 @@
+<div style="border: 1px solid black;padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; background:green;">
+	<font color=blue>Simple-Template</font><br>
+<!--
+	<table border=0>
+		<tr><td>Name:</td><td><input data-bind="value:name"/></td></tr>
+		<tr><td>Title:</td><td><input data-bind="value:title"/></td></tr>
+		<tr><td>Description:</td><td><input data-bind="value:description"/></td></tr>
+	</table>
+	-->	
+
+	<table border=1 cellspacing=1 width=90%>
+		<thead>
+			<tr >
+				<th>Name</th>
+				<th>Title</th>
+				<th>Date</th>
+				<th>Description</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: users">
+			<tr>
+				<td><a href="#" data-bind="text: name"></a></td>
+				<td data-bind="text: title"></td>
+				<td data-bind="text: date"></td>
+				<td data-bind="text: description"></td>
+				<td width=90>
+					<div style="text-align: center">
+					<a href data-bind="click:$parent.editUser, text:'Edit'"></a>&nbsp;&nbsp;
+					<button data-bind="{click:$parent.deleteUser}">Delete</button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

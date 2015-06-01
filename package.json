@@ -1,0 +1,13 @@
+{
+  "name": "SampleServer",
+  "description": "Horst Development Server For NodeJS",
+  "version": "0.0.2",
+  "private": true,
+  "dependencies": {
+    "express": "3.x",
+    "async": "0.1.x",
+    "if-async": "3.7.x",
+    "node-uuid": "1.4.x",
+    "mongodb": "1.2.x"
+  }
+}

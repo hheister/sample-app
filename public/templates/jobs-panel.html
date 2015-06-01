@@ -1,0 +1,28 @@
+<div id="jobs-panel">
+	<div class="tableToolbarContainer">
+		<label class="horstLabel">Jobs:</label><button data-bind="click:loadJobs">Refresh Jobs</button>&nbsp;<button data-bind="click:addJob">Create Job</button>
+	</div>
+	<table width=90% class="hovertable">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Salary</th>
+				<th>Vacation</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: jobs">
+			<tr>
+				<td><a href="#" data-bind="text: name"></a></td>
+				<td data-bind="text: salary"></td>
+				<td data-bind="text: vacation"></td>
+				<td width=90>
+					<div style="text-align: center">
+					<a href data-bind="click:$parent.editJob, text:'Edit'"></a>&nbsp;&nbsp;
+						<button data-bind="{click:$parent.deleteJob}">Delete</button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

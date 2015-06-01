@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Horst Knockout Testing</title>
+		<link rel="stylesheet" type="text/css" href="http://localhost:8080/css/bootstrap.min.css">
+		<style>
+			.form {border-style: solid; border-width: 1px; background: yellow; padding:5px;}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div id="content">
+				<p>The jQuery.ajax() (or $.ajax) method can be used many ways.</p>
+				<ul>
+					<li><button id="loadJSONBtn">Load Sample JSON</button></li>
+					<li><button id="loadHTMLBtn">Load Sample HTML</button></li>
+					<li><button id="postDataBtn">POST Data</button> Send data to a remote server</li>
+					<li><button id="remote-error">Error Handle a 404</button> You can even error handle requests with it</li>
+				</ul>
+				<div id="result"></div>
+			</div>
+
+			<div id="formArea" class="form">
+				<b> Form Submission Test</b>
+				<table border=0 cellspacing=2>
+					<tr><td>User:</td><td><input type="TEXT" id="user" size="40"></td></tr>
+	    			<tr><td>Password:</td><td><input type="password" id="password" size="40"></td></tr>
+	    			<tr><td colspan=2><input type="button" id="submit" value="Submit"></td></tr>
+	    		</table>
+			</div>
+			<br>
+			<div id="databaseTable" class="form">
+				<b> Database Table Data</b>&nbsp;&nbsp;<button data-bind="click:addAlbum">Add</button>
+				<table border=1 cellspacing=1 width=90%>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Title</th>
+							<th>Description</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody data-bind="foreach: albums">
+						<tr>
+							<td><a href="#" data-bind="text: name"></a></td>
+							<td data-bind="text: title"></td>
+							<td data-bind="text: description"></td>
+							<td width=90>
+								<div style="text-align: center">
+								<a href data-bind="click:$parent.editAlbum, text:'Edit'"></a>&nbsp;&nbsp;
+								<button data-bind="{click:$parent.deleteAlbum}">Delete</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+					</table>
+					<br>
+	    		<button id="loadDatabaseBtn">Load Database Data</button>
+	    		<button data-bind="click:loadAlbums">Knockout Click Me</button>
+			</div>
+		</div>
+		<hr>
+		<br>
+		<b>Template Test</b>
+		<br>
+        <div data-bind="foreach:albums">
+        	<div data-bind="template: { name: 'simple-template', data: $data }"></div>  
+        </div> 
+        <!--  MOVED TO EXTERNAL FILE
+
+           <script type="text/html" id="simple-template">
+			<h3 data-bind="text: name"></h3>
+    		<p>Title: <span data-bind="text: title"></span></p>
+		</script> -->
+
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script>
+			$(document).ready(init);
+
+			function init () {
+				alert('document.ready');
+                $("#loadHTMLBtn").click(function() {
+				    $.get("http://localhost:8080/html/sample.html", function(data, status){
+				        alert("Data: " + data + "\nStatus: " + status);
+				    }).done(function() {
+					    alert( "second success" );
+					  })
+					  .fail(function(err) {
+					    alert( "error" + err.message);
+					  })
+					  .always(function() {
+					    alert( "finished" );
+					  });
+				 });
+
+                $("#loadJSONBtn").click(function() {
+				    $.get("http://localhost:8080/json/sample.json", function(data, status){
+				        alert("Data: " + data + "\nStatus: " + status);
+				    }).done(function() {
+					    alert( "second success" );
+					  })
+					  .fail(function(err) {
+					    alert( "error" + err.message);
+					  })
+					  .always(function() {
+					    alert( "finished" );
+					  });
+				 });
+
+                $("#postDataBtn").click(function() {
+					//send data to the server
+					$.ajax({
+						type: "POST",
+						url: "http://localhost:8080/postData",
+						data: { first: "Horst", last: "Heistermann", company:"Oracle" }
+					}).done(function( msg ) {
+						alert( "Data Saved: " + msg );
+					});
+				});
+
+
+				$("#submit").click(function(){
+			          user=$("#user").val();
+			          pass=$("#password").val();
+			          $.post("http://localhost:8080/postData", {user: user,password: pass}, function(data){
+			            alert(data);
+			          });
+			        });
+
+				$("#loadDatabaseBtn").click(function() {
+				    $.get("http://localhost:8080/albums", function(data, status){
+				        alert("Data: " + data + "\nStatus: " + status);
+				    }).done(function() {
+					    alert( "done" );
+					  })
+					  .fail(function(err) {
+					    alert( "error" + err.message);
+					  })
+					  .always(function() {
+					    alert( "finished" );
+					  });
+				 });
+			}
+		</script>
+
+	<script type="text/javascript" src="http://localhost:8080/js/vendors/jquery.min.js"></script>
+	<script type="text/javascript" src="http://localhost:8080/js/vendors/icheck.js"></script>
+	<!-- Need this for the modal dialogs -->
+	<script type="text/javascript" src="http://localhost:8080/js/vendors/bootstrap.min.js"></script>
+	<script type='text/javascript' src='http://localhost:8080/js/vendors/knockout.debug.js'></script>
+	<script type="text/javascript" src="http://localhost:8080/js/vendors/koExternalTemplateEngine_all.min.js"></script>
+	<script>
+			function ViewModel() {
+			var self = this;
+			self.albums = ko.observableArray([]);
+			self.hasFetchedAlbums = ko.observable(false);
+			self.selectedAlbum = ko.observable({});
+
+			self.loadAlbums = function() {
+				$.ajax({
+					url: 'http://localhost:8080/albums',
+					type: 'GET',
+					contentType: 'application/json'
+				}).success(function(data) { 
+					// data is an array of javacript objects
+					for (var i = 0; i < data.length; i++) {
+						var name = data[i].name;
+						var title = data[i].title;
+						var description = data[i].description;
+						/*var ro = {
+							"name": name, "title": title, "description": description
+						};*/
+						var ro = self.createRowObject(name, title, description);
+						self.albums.push(ro);
+					}
+					// Now let's append some text to the name property. Since it is an observable property
+					// the UI should update and show it automatically
+					for (var j = 0; j < self.albums().length; j++) {
+						var a = self.albums()[j];
+						var currName = a.name();
+						a.name(currName + " HORST ADDED THIS!");
+					}
+					self.hasFetchedAlbums(true);
+				});
+			};
+			
+			self.addAlbum = function() {
+				var ro = self.createRowObject("Enter Name", "Enter Title", "Enter Description");
+				self.albums.push(ro);
+			};
+
+			self.createRowObject = function(name, title, desc) {
+				var ro = {
+					"name": ko.observable(name), 
+					"title": title, 
+					"description": desc
+				};
+				return ro;
+			};
+
+			self.deleteAlbum = function(album) {
+				console.log('deleteAlbum=' + album);
+				self.albums.remove(album);
+			};
+
+			self.editAlbum = function (album) {
+		        self.selectedAlbum(album);
+		        $('#editAlbumModal').modal('show');
+		    };
+
+		    self.cancelEditAlbum = function (album) {
+		        $('#editAlbumModal').modal('hide');
+		    };
+
+		    self.saveAlbum = function (album) {
+		        alert('saveAlbum name=' + album.name + '  title=' + album.title);
+		    };
+		};
+
+		//ko External Template Settings
+		infuser.defaults.templateSuffix = ".html";
+		infuser.defaults.templateUrl = "http://localhost:8080/templates";
+
+
+		var viewModel = new ViewModel();
+		ko.applyBindings(viewModel);
+	</script>
+
+
+	</body>
+</html>
