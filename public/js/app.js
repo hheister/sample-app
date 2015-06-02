@@ -23,7 +23,7 @@ define(['viewmodel', 'jqueryUI', "jqxcore", "jqxsplitter","jqxdata", "jqxlistbox
 
             function initUsersDataTable() {
                 $('#users-data-table').dataTable( {
-                    "ajax": "http://localhost:8080/sampleapp/usersdatatable",
+                    "ajax": "./sampleapp/usersdatatable",
                     "pagingType": "full_numbers",
                     "scrollY": "200px",
                     "scrollCollapse": true,
@@ -53,7 +53,7 @@ define(['viewmodel', 'jqueryUI', "jqxcore", "jqxsplitter","jqxdata", "jqxlistbox
 
             function initDataTable() {
                 $('#data-table-1').dataTable( {
-                    "ajax": "http://localhost:8080/json/objects.json",
+                    "ajax": "./json/objects.json",
                     "columns": [
                         { "data": "name" },
                         { "data": "position" },
@@ -184,7 +184,7 @@ define(['viewmodel', 'jqueryUI', "jqxcore", "jqxsplitter","jqxdata", "jqxlistbox
                 var source =  { datatype: "json",
                                 datafields: [{ name: 'CompanyName' }, { name: 'ContactName' }],
                                 id: 'id',
-                                url:'http://localhost:8080/json/customers.json'
+                                url:'./json/customers.json'
                  };
                  var dataAdapter = new $.jqx.dataAdapter(source);
                 // Create a jqxListBox

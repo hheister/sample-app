@@ -57,7 +57,7 @@ var vm = (function () {
                     fadeInTime: 500,
                     fadeOutTime: 1000,
                     fadeLevel: 0.5,
-                    image: 'http://localhost:8080/js/vendors/oLoader/images/ownageLoader/loader1.gif'
+                    image: './js/vendors/oLoader/images/ownageLoader/loader1.gif'
                 }
             );
         } else {
@@ -77,7 +77,7 @@ var vm = (function () {
 
     var loadUsers = function() {
         showProgressBar(true);
-        var serverURL = 'http://localhost:8080/sampleapp/users?pageSize=' + userPageInfo.pageSize() + '&startPage=' + userPageInfo.startPage();
+        var serverURL = './sampleapp/users?pageSize=' + userPageInfo.pageSize() + '&startPage=' + userPageInfo.startPage();
         console.log(serverURL);
         $.ajax({
             url: serverURL,
@@ -148,7 +148,7 @@ var vm = (function () {
             date : selectedUser().date(),
             citizen : true
         };
-        var url = "http://localhost:8080/sampleapp/users";
+        var url = "./sampleapp/users";
         $.ajax({
             type: "POST",
             url: url,
@@ -196,7 +196,7 @@ var vm = (function () {
 
     var deleteUser = function(user) {
         var id = user.id;
-        var url = "http://localhost:8080/sampleapp/user/" + id;
+        var url = "./sampleapp/user/" + id;
         // Delete from the database
         $.ajax({
             type: "DELETE",
@@ -261,7 +261,7 @@ var vm = (function () {
 
         showProgressBar(true);
         // Update the user on the server
-        var url = "http://localhost:8080/sampleapp/user/" + userID;
+        var url = "./sampleapp/user/" + userID;
 
         // Update the database with the new values
         $.ajax({
@@ -316,7 +316,7 @@ var vm = (function () {
         }
         showProgressBar(true);
         // Update the user on the server
-        var url = "http://localhost:8080/sampleapp/user/" + id;
+        var url = "./sampleapp/user/" + id;
         var DataToSend = {  
                 "name" : user.name(),
                 "title" : user.title(),
@@ -359,7 +359,7 @@ var vm = (function () {
     var loadJobs = function() {
         showProgressBar(true);
         $.ajax({
-            url: 'http://localhost:8080/sampleapp/jobs',
+            url: './sampleapp/jobs',
             type: 'GET',
             contentType: 'application/json'
         }).success(function(data) {
@@ -401,7 +401,7 @@ var vm = (function () {
             salary : selectedJob().salary(),
             vacation : selectedJob().vacation()
         };
-        var url = "http://localhost:8080/sampleapp/jobs";
+        var url = "./sampleapp/jobs";
         $.ajax({
             type: "POST",
             url: url,
@@ -478,7 +478,7 @@ var vm = (function () {
         }
 
         // Update the job on the server
-        var url = "http://localhost:8080/sampleapp/job/" + id;
+        var url = "./sampleapp/job/" + id;
         var DataToSend = {
             "name" : job.name,
             "vacation" : job.vacation(),
@@ -509,7 +509,7 @@ var vm = (function () {
 
     var deleteJob = function (job) {
         var id = job.id;
-        var url = "http://localhost:8080/sampleapp/job/" + id;
+        var url = "./sampleapp/job/" + id;
         // Delete from the database
         $.ajax({
             type: "DELETE",
@@ -610,7 +610,7 @@ $( document ).ajaxError(function(event,response) {
 
 // ko External Template Settings
 infuser.defaults.templateSuffix = ".html";
-infuser.defaults.templateUrl = "http://localhost:8080/templates";
+infuser.defaults.templateUrl = "./templates";
 
 //alert('infuser.defaults.templateUrl=' + infuser.defaults.templateUrl);
 vm.activate();
